@@ -1,0 +1,27 @@
+plugins {
+	id 'eclipse'
+    id 'java'
+}
+
+repositories {
+	mavenLocal()
+	mavenCentral()
+}
+
+archivesBaseName = project.artifactId
+version = project.version
+
+dependencies {
+
+	implementation 'commons-io:commons-io:2.15.1'
+	implementation 'commons-cli:commons-cli:1.6.0'
+	implementation 'com.univocity:univocity-parsers:2.9.1'
+	implementation 'org.apache.velocity:velocity-engine-core:2.3'
+	implementation 'org.dom4j:dom4j:2.1.4'
+	implementation 'org.slf4j:slf4j-reload4j:2.0.12'
+	
+}
+
+clean {
+	delete(project.buildDir)
+}

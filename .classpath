@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" output="bin/main" path="src/main/java">
+		<attributes>
+			<attribute name="gradle_scope" value="main"/>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" output="bin/main" path="src/main/resources">
+		<attributes>
+			<attribute name="gradle_scope" value="main"/>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/carlo/OneDrive/Escritorio/clientes/Andbank/proyectos/transformador/emir-refit-csv2xml-launcher/lib/commons-cli-1.6.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/carlo/OneDrive/Escritorio/clientes/Andbank/proyectos/transformador/emir-refit-csv2xml-launcher/lib/commons-io-2.15.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/carlo/OneDrive/Escritorio/clientes/Andbank/proyectos/transformador/emir-refit-csv2xml-launcher/lib/commons-lang3-3.11.jar"/>
+	<classpathentry kind="lib" path="C:/Users/carlo/OneDrive/Escritorio/clientes/Andbank/proyectos/transformador/emir-refit-csv2xml-launcher/lib/dom4j-2.1.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/carlo/OneDrive/Escritorio/clientes/Andbank/proyectos/transformador/emir-refit-csv2xml-launcher/lib/emir-refit-csv2xml-1.0.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/carlo/OneDrive/Escritorio/clientes/Andbank/proyectos/transformador/emir-refit-csv2xml-launcher/lib/jaxb-api-2.2.12.jar"/>
+	<classpathentry kind="lib" path="C:/Users/carlo/OneDrive/Escritorio/clientes/Andbank/proyectos/transformador/emir-refit-csv2xml-launcher/lib/jaxen-1.1.6.jar"/>
+	<classpathentry kind="lib" path="C:/Users/carlo/OneDrive/Escritorio/clientes/Andbank/proyectos/transformador/emir-refit-csv2xml-launcher/lib/pull-parser-2.1.10.jar"/>
+	<classpathentry kind="lib" path="C:/Users/carlo/OneDrive/Escritorio/clientes/Andbank/proyectos/transformador/emir-refit-csv2xml-launcher/lib/relaxngDatatype-20020414.jar"/>
+	<classpathentry kind="lib" path="C:/Users/carlo/OneDrive/Escritorio/clientes/Andbank/proyectos/transformador/emir-refit-csv2xml-launcher/lib/reload4j-1.2.22.jar"/>
+	<classpathentry kind="lib" path="C:/Users/carlo/OneDrive/Escritorio/clientes/Andbank/proyectos/transformador/emir-refit-csv2xml-launcher/lib/slf4j-api-2.0.12.jar"/>
+	<classpathentry kind="lib" path="C:/Users/carlo/OneDrive/Escritorio/clientes/Andbank/proyectos/transformador/emir-refit-csv2xml-launcher/lib/slf4j-reload4j-2.0.12.jar"/>
+	<classpathentry kind="lib" path="C:/Users/carlo/OneDrive/Escritorio/clientes/Andbank/proyectos/transformador/emir-refit-csv2xml-launcher/lib/stax-api-1.0-2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/carlo/OneDrive/Escritorio/clientes/Andbank/proyectos/transformador/emir-refit-csv2xml-launcher/lib/univocity-parsers-2.9.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/carlo/OneDrive/Escritorio/clientes/Andbank/proyectos/transformador/emir-refit-csv2xml-launcher/lib/velocity-engine-core-2.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/carlo/OneDrive/Escritorio/clientes/Andbank/proyectos/transformador/emir-refit-csv2xml-launcher/lib/xpp3-1.1.4c.jar"/>
+	<classpathentry kind="lib" path="C:/Users/carlo/OneDrive/Escritorio/clientes/Andbank/proyectos/transformador/emir-refit-csv2xml-launcher/lib/xsdlib-2013.6.1.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk-21.0.2"/>
+	<classpathentry kind="output" path="bin/default"/>
+</classpath>

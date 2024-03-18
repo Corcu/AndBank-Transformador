@@ -1,0 +1,665 @@
+<Document xmlns="urn:iso:std:iso:20022:tech:xsd:auth.030.001.03" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:iso:std:iso:20022:tech:xsd:auth.030.001.03 auth.030.001.03_ESMAUG_DATTAR_1.1.0.xsd">
+	<DerivsTradRpt>
+		<RptHdr>
+			<NbRcrds>$numberOfRecords</NbRcrds>
+		</RptHdr>
+		<TradData>
+			#foreach($values in $valuesList)
+			<Rpt>
+			#if($values.get('Action type') == 'VALU')
+				<ValtnUpd>
+					<CtrPtySpcfcData>
+						<CtrPty>
+							<RptgCtrPty>
+								<Id>
+									<Lgl>
+										<Id>
+											<LEI>$values.get('Counterparty 1 (Reporting counterparty)')</LEI>
+										</Id>
+									</Lgl>
+								</Id>
+							</RptgCtrPty>
+							<OthrCtrPty>
+								<IdTp>
+									<Lgl>
+										<Id>
+											<LEI>$values.get('Counterparty 2')</LEI>
+										</Id>
+									</Lgl>
+								</IdTp>
+							</OthrCtrPty>
+							<SubmitgAgt>
+								<LEI>$values.get('Report submitting entity ID')</LEI>
+							</SubmitgAgt>
+							<NttyRspnsblForRpt>
+								<LEI>$values.get('Entity responsible for reporting')</LEI>
+							</NttyRspnsblForRpt>
+						</CtrPty>
+						<Valtn>
+							<CtrctVal>
+								<Amt Ccy="$values.get('Valuation currency')">$values.get('Valuation amount')</Amt>
+								<Sgn>$values.get('Valuation amount sign')</Sgn>
+							</CtrctVal>
+							<TmStmp>$values.get('Valuation timestamp')</TmStmp>
+							<Tp>$values.get('Valuation method')</Tp>
+						</Valtn>
+						<RptgTmStmp>$values.get('Reporting timestamp')</RptgTmStmp>
+					</CtrPtySpcfcData>
+					<CmonTradData>
+						<TxData>
+							<TxId>
+								<UnqTxIdr>$values.get('UTI')</UnqTxIdr>
+							</TxId>
+							#if(!$StringUtils.isEmpty($values.get('Prior UTI')))
+							<PrrTxId>
+								<UnqTxIdr>$values.get('Prior UTI')</UnqTxIdr>
+							</PrrTxId>
+							#end
+							<DerivEvt>
+								#if(!$StringUtils.isEmpty($values.get('PTRR ID')))
+								<Id>
+									<PstTradRskRdctnIdr>
+										<Id>$values.get('PTRR ID')</Id>
+									</PstTradRskRdctnIdr>
+								</Id>
+								#end
+								<TmStmp>
+									<Dt>$values.get('Event date')</Dt>
+								</TmStmp>
+							</DerivEvt>
+						</TxData>
+					</CmonTradData>
+					<Lvl>$values.get('Level')</Lvl>
+				</ValtnUpd>
+			#elseif($values.get('Action type') == 'TERM')
+				<Termntn>
+					<CtrPtySpcfcData>
+						<CtrPty>
+							<RptgCtrPty>
+								<Id>
+									<Lgl>
+										<Id>
+											<LEI>$values.get('Counterparty 1 (Reporting counterparty)')</LEI>
+										</Id>
+									</Lgl>
+								</Id>
+							</RptgCtrPty>
+							<OthrCtrPty>
+								<IdTp>
+									<Lgl>
+										<Id>
+											<LEI>$values.get('Counterparty 2')</LEI>
+										</Id>
+									</Lgl>
+								</IdTp>
+							</OthrCtrPty>
+							<SubmitgAgt>
+								<LEI>$values.get('Report submitting entity ID')</LEI>
+							</SubmitgAgt>
+							<NttyRspnsblForRpt>
+								<LEI>$values.get('Entity responsible for reporting')</LEI>
+							</NttyRspnsblForRpt>
+						</CtrPty>
+						<RptgTmStmp>$values.get('Reporting timestamp')</RptgTmStmp>
+					</CtrPtySpcfcData>
+					<CmonTradData>
+						<TxData>
+							<TxId>
+								<Prtry>
+									<Id>$values.get('UTI')</Id>
+								</Prtry>
+							</TxId>
+						#if(!$StringUtils.isEmpty($values.get('Prior UTI')))
+						<SbsqntTxId>
+								<UnqTxIdr>$values.get('Prior UTI')</UnqTxIdr>
+							</SbsqntTxId>
+						#end
+						<EarlyTermntnDt>$values.get('Early termination date')</EarlyTermntnDt>
+							<DerivEvt>
+								<Tp>$values.get('Event type')</Tp>
+								<TmStmp>
+									<Dt>$values.get('Event date')</Dt>
+								</TmStmp>
+							</DerivEvt>
+						</TxData>
+					</CmonTradData>
+					<Lvl>$values.get('Level')</Lvl>
+				</Termntn>
+		#elseif($values.get('Action type') == 'EROR')
+				<Err>
+					<CtrPtySpcfcData>
+						<CtrPty>
+							<RptgCtrPty>
+								<Id>
+									<Lgl>
+										<Id>
+											<LEI>$values.get('Counterparty 1 (Reporting counterparty)')</LEI>
+										</Id>
+									</Lgl>
+								</Id>
+							</RptgCtrPty>
+							<OthrCtrPty>
+								<IdTp>
+									<Lgl>
+										<Id>
+											<LEI>$values.get('Counterparty 2')</LEI>
+										</Id>
+									</Lgl>
+								</IdTp>
+							</OthrCtrPty>
+							<SubmitgAgt>
+								<LEI>$values.get('Report submitting entity ID')</LEI>
+							</SubmitgAgt>
+							<NttyRspnsblForRpt>
+								<LEI>$values.get('Entity responsible for reporting')</LEI>
+							</NttyRspnsblForRpt>
+						</CtrPty>
+						<RptgTmStmp>$values.get('Reporting timestamp')</RptgTmStmp>
+					</CtrPtySpcfcData>
+					<CmonTradData>
+						<TxData>
+							<TxId>
+								<Prtry>
+									<Id>$values.get('UTI')</Id>
+								</Prtry>
+							</TxId>
+							<DerivEvt>
+								<TmStmp>
+									<Dt>$values.get('Event date')</Dt>
+								</TmStmp>
+							</DerivEvt>
+						</TxData>
+					</CmonTradData>
+					<Lvl>$values.get('Level')</Lvl>
+				</Err>
+			#elseif($values.get('Action type') == 'NEWT' || $values.get('Action type') == 'MODI') 
+			#if($values.get('Action type') == 'NEWT')
+			<New>
+			#elseif($values.get('Action type') == 'MODI')
+				<Mod>
+			#end
+					<CtrPtySpcfcData>
+							<CtrPty>
+								<RptgCtrPty>
+									<Id>
+										<Lgl>
+											<Id>
+												<LEI>$values.get('Counterparty 1 (Reporting counterparty)')</LEI>
+											</Id>
+										</Lgl>
+									</Id>
+									<Ntr>
+										<FI>
+											<Sctr>
+												<Cd>$values.get('Corporate sector of the counterparty 1')</Cd>
+											</Sctr>
+											<ClrThrshld>$values.get('Clearing threshold of counterparty 1')</ClrThrshld>
+										</FI>
+									</Ntr>
+									<DrctnOrSd>
+								#if(!$StringUtils.isEmpty($values.get('Direction')))
+									<CtrPtySd>$values.get('Direction')</CtrPtySd>
+								#else
+									<Drctn>
+											<DrctnOfTheFrstLeg>$values.get('Direction of leg 1')</DrctnOfTheFrstLeg>
+											<DrctnOfTheScndLeg>$values.get('Direction of leg 2')</DrctnOfTheScndLeg>
+										</Drctn>
+								#end
+								</DrctnOrSd>
+								</RptgCtrPty>
+								<OthrCtrPty>
+									<IdTp>
+										<Lgl>
+											<Id>
+												<LEI>$values.get('Counterparty 2')</LEI>
+											</Id>
+										</Lgl>
+									</IdTp>
+									<Ntr>
+										<FI>
+											<Sctr>
+												<Cd>$values.get('Corporate sector of the counterparty 2')</Cd>
+											</Sctr>
+											<ClrThrshld>$values.get('Clearing threshold of the counterparty 2')</ClrThrshld>
+										</FI>
+									</Ntr>
+									<RptgOblgtn>$values.get('Reporting obligation of the counterparty 2')</RptgOblgtn>
+								</OthrCtrPty>
+						#if(!$StringUtils.isEmpty($values.get('Broker ID')))
+							<Brkr>
+									<LEI>$values.get('Broker ID')</LEI>
+								</Brkr>
+						#end
+							<SubmitgAgt>
+									<LEI>$values.get('Report submitting entity ID')</LEI>
+								</SubmitgAgt>
+						#if(!$StringUtils.isEmpty($values.get('Clearing member')))
+							<ClrMmb>
+									<Lgl>
+										<Id>
+											<LEI>$values.get('Clearing member')</LEI>
+										</Id>
+									</Lgl>
+								</ClrMmb>
+						#end
+							<NttyRspnsblForRpt>
+									<LEI>$values.get('Entity responsible for reporting')</LEI>
+								</NttyRspnsblForRpt>
+							</CtrPty>
+						#if(($values.get('Action type') == 'NEWT') && ($values.get('Backdated Trade') == 'false'))
+						<Valtn>
+								<CtrctVal>
+									<Amt Ccy="$values.get('Valuation currency')">$values.get('Valuation amount')</Amt>
+									<Sgn>$values.get('Valuation amount sign')</Sgn>
+								</CtrctVal>
+								<TmStmp>$values.get('Valuation timestamp')</TmStmp>
+								<Tp>$values.get('Valuation method')</Tp>
+							</Valtn>
+						#end
+						<RptgTmStmp>$values.get('Reporting timestamp')</RptgTmStmp>
+						</CtrPtySpcfcData>
+						<CmonTradData>
+							<CtrctData>
+								<CtrctTp>$values.get('Contract type')</CtrctTp>
+								<AsstClss>$values.get('Asset class')</AsstClss>
+								<PdctClssfctn>$values.get('Product classification')</PdctClssfctn>
+							#if($values.get('Asset class') != 'EQUI')
+							<PdctId>
+								#if(!$StringUtils.isEmpty($values.get('ISIN')))
+								<ISIN>$values.get('ISIN')</ISIN>
+								#elseif(!$StringUtils.isEmpty($values.get('UPI')))
+								<UnqPdctIdr>
+										<Id>$values.get('UPI')</Id>
+									</UnqPdctIdr>
+								#end
+							</PdctId>
+							#else
+							<UndrlygInstrm>
+								#if(!$StringUtils.isEmpty($values.get('ISIN')))
+								<ISIN>$values.get('ISIN')</ISIN>
+								#elseif(!$StringUtils.isEmpty($values.get('UPI')))
+								<UnqPdctIdr>
+										<Id>$values.get('UPI')</Id>
+									</UnqPdctIdr>
+								#end
+							</UndrlygInstrm>
+							#end
+							<SttlmCcy>
+									<Ccy>$values.get('Settlement currency 1')</Ccy>
+								</SttlmCcy>
+						#if(!$StringUtils.isEmpty($values.get('Settlement currency 2')))
+							<SttlmCcyScndLeg>
+									<Ccy>$values.get('Settlement currency 2')</Ccy>
+								</SttlmCcyScndLeg>
+						#end
+							<DerivBasedOnCrptAsst>$values.get('Derivative based on crypto-assets')</DerivBasedOnCrptAsst>
+							</CtrctData>
+							<TxData>
+								<TxId>
+									<UnqTxIdr>$values.get('UTI')</UnqTxIdr>
+								</TxId>
+						#if(!$StringUtils.isEmpty($values.get('Prior UTI')))
+							<PrrTxId>
+									<UnqTxIdr>$values.get('Prior UTI')</UnqTxIdr>
+								</PrrTxId>
+						#end
+							<CollPrtflCd>
+									<Prtfl>
+										<Cd>$values.get('Collateral portfolio code')</Cd>
+									</Prtfl>
+								</CollPrtflCd>
+						#if(!$StringUtils.isEmpty($values.get('Report tracking number')))
+							<RptTrckgNb>$values.get('Report tracking number')</RptTrckgNb>
+						#end
+							<PltfmIdr>$values.get('Venue of execution')</PltfmIdr>
+								<TxPric>
+									<Pric>
+										<MntryVal>
+											<Amt Ccy="$values.get('Price currency')">$values.get('Price')</Amt>
+										</MntryVal>
+									</Pric>
+								</TxPric>
+								<NtnlAmt>
+									<FrstLeg>
+										<Amt>
+											<Amt Ccy="$values.get('Notional currency 1')">$values.get('Notional amount of leg 1')</Amt>
+										</Amt>
+								#if(!$StringUtils.isEmpty($values.get('Notional amount in effect on associated effective date of leg 1')))
+									<SchdlPrd>
+											<Amt>
+												<Amt Ccy="$values.get('Notional currency 1')">$values.get('Notional amount in effect on associated effective date of leg 1')</Amt>
+											</Amt>
+											<UadjstdEndDt>$values.get('End date of the notional amount of leg 1')</UadjstdEndDt>
+											<UadjstdFctvDt>$values.get('Effective date of the notional amount of leg 1')</UadjstdFctvDt>
+										</SchdlPrd>
+									#end
+								</FrstLeg>
+							#if($values.get('Has leg 2') == 'true')
+								<ScndLeg>
+										<Amt>
+											<Amt Ccy="$values.get('Notional currency 2')">$values.get('Notional amount of leg 2')</Amt>
+										</Amt>
+								#if(!$StringUtils.isEmpty($values.get('Notional amount in effect on associated effective date of leg 2')))
+									<SchdlPrd>
+											<Amt>
+												<Amt Ccy="$values.get('Notional currency 2')">$values.get('Notional amount in effect on associated effective date of leg 2')</Amt>
+											</Amt>
+											<UadjstdEndDt>$values.get('End date of the notional amount of leg 2')</UadjstdEndDt>
+											<UadjstdFctvDt>$values.get('Effective date of the notional amount of leg 2')</UadjstdFctvDt>
+										</SchdlPrd>
+								#end
+								</ScndLeg>
+							#end
+							</NtnlAmt>
+						#if($values.get('Asset class') == 'EQUI')	
+							<NtnlQty>
+									<FrstLeg>
+										<TtlQty>$values.get('Total notional quantity of leg 1')</TtlQty>
+										<Dtls>
+											<SchdlPrd>
+												<Qty>$values.get('Notional quantity in effect on associated effective date of leg 1')</Qty>
+												<UadjstdFctvDt>$values.get('Effective date of the notional amount of leg 1')</UadjstdFctvDt>
+												<UadjstdEndDt>$values.get('End date of the notional amount of leg 1')</UadjstdEndDt>
+											</SchdlPrd>
+										</Dtls>
+									</FrstLeg>
+									<ScndLeg>
+										<TtlQty>$values.get('Total notional quantity of leg 2')</TtlQty>
+										<Dtls>
+											<SchdlPrd>
+												<Qty>$values.get('Notional quantity in effect on associated effective date of leg 2')</Qty>
+												<UadjstdFctvDt>$values.get('Effective date of the notional quantity of leg 2')</UadjstdFctvDt>
+												<UadjstdEndDt>$values.get('End date of the notional quantity of leg 2')</UadjstdEndDt>
+											</SchdlPrd>
+										</Dtls>
+									</ScndLeg>
+								</NtnlQty>
+						#end
+							<DlvryTp>$values.get('Delivery type')</DlvryTp>
+								<ExctnTmStmp>$values.get('Execution timestamp')</ExctnTmStmp>
+								<FctvDt>$values.get('Effective date')</FctvDt>
+								<XprtnDt>$values.get('Expiration date')</XprtnDt>
+								<SttlmDt>$values.get('Final contractual settlement date')</SttlmDt>
+								<MstrAgrmt>
+									<Tp>
+										<Tp>$values.get('Master Agreement type')</Tp>
+									</Tp>
+									<Vrsn>$values.get('Master Agreement version')</Vrsn>
+						#if(!$StringUtils.isEmpty($values.get('Other master agreement type')))
+								<OthrMstrAgrmtDtls>$values.get('Other master agreement type')</OthrMstrAgrmtDtls>
+						#end
+							</MstrAgrmt>
+								<PstTradRskRdctnFlg>$values.get('PTRR')</PstTradRskRdctnFlg>
+								<DerivEvt>
+							#if(!$StringUtils.isEmpty($values.get('PTRR ID')))
+								<Id>
+										<PstTradRskRdctnIdr>
+											<Id>$values.get('PTRR ID')</Id>
+											<Strr>$values.get('PTRR ID')</Strr>
+										</PstTradRskRdctnIdr>
+									</Id>
+							#end
+								<Tp>$values.get('Event type')</Tp>
+									<TmStmp>
+										<Dt>$values.get('Event date')</Dt>
+									</TmStmp>
+								</DerivEvt>
+								<TradConf>
+							#if($values.get('Confirmed') != 'NCNF')
+								<Confd>
+										<Tp>$values.get('Confirmed')</Tp>
+										<TmStmp>$values.get('Confirmation timestamp')</TmStmp>
+									</Confd>
+							#else
+								<NonConfd>
+										<Tp>NCNF</Tp>
+									</NonConfd>
+							#end
+							</TradConf>
+								<TradClr>
+									<ClrOblgtn>$values.get('Clearing obligation')</ClrOblgtn>
+									<ClrSts>
+								#if($values.get('Cleared') == 'Y')
+									<Clrd>
+											<Dtls>
+												<CCP>
+													<LEI>$values.get('Central counterparty')</LEI>
+												</CCP>
+												<ClrDtTm>$values.get('Clearing timestamp')</ClrDtTm>
+											</Dtls>
+										</Clrd>
+								#else
+									<NonClrd>
+											<Rsn>NORE</Rsn>
+										</NonClrd>
+								#end
+								</ClrSts>
+									<IntraGrp>$values.get('Intragroup')</IntraGrp>
+								</TradClr>
+						#if($values.get('Asset class') == 'INTR')
+							<IntrstRate>
+								#if($values.get('Has leg 1') == 'true')
+								<FrstLeg>
+								#if($values.get('Is floating leg 1') == 'true')
+									<Fltg>
+											<Nm>$values.get('Name of the floating rate of leg 1')</Nm>
+											<Rate>
+												<Cd>$values.get('Identifier of the floating rate of leg 1')</Cd>
+											</Rate>
+											<RefPrd>
+												<Unit>$values.get('Floating rate reference period of leg 1 - time period')</Unit>
+												<Val>$values.get('Floating rate reference period of leg 1 - multiplier')</Val>
+											</RefPrd>
+											<Sprd>
+												<BsisPtSprd>$values.get('Spread of leg 1')</BsisPtSprd>
+											</Sprd>
+											<DayCnt>
+												<Cd>$values.get('Floating rate day count convention of leg 1')</Cd>
+											</DayCnt>
+											<PmtFrqcy>
+												<Term>
+													<Unit>$values.get('Floating rate payment frequency period of leg 1')</Unit>
+													<Val>$values.get('Floating rate payment frequency period multiplier of leg 1')</Val>
+												</Term>
+											</PmtFrqcy>
+											<RstFrqcy>
+												<Term>
+													<Unit>$values.get('Floating rate reset frequency period of leg 1')</Unit>
+													<Val>$values.get('Floating rate reset frequency multiplier of leg 1')</Val>
+												</Term>
+											</RstFrqcy>
+										</Fltg>
+								#else
+									<Fxd>
+											<Rate>
+												<Rate>$values.get('Fixed rate of leg 1 or coupon')</Rate>
+											</Rate>
+											<DayCnt>
+												<Cd>$values.get('Fixed rate or coupon day count convention leg 1')</Cd>
+											</DayCnt>
+											<PmtFrqcy>
+												<Term>
+													<Unit>$values.get('Fixed rate or coupon payment frequency period leg 1')</Unit>
+													<Val>$values.get('Fixed rate or coupon payment frequency period multiplier leg 1')</Val>
+												</Term>
+											</PmtFrqcy>
+										</Fxd>
+								#end
+								</FrstLeg>
+							#end
+							#if($values.get('Has leg 2') == 'true')
+								<ScndLeg>
+								#if($values.get('Is floating leg 2') == 'true')
+									<Fltg>
+											<Nm>$values.get('Name of the floating rate of leg 2')</Nm>
+											<Rate>
+												<Cd>$values.get('Identifier of the floating rate of leg 2')</Cd>
+											</Rate>
+											<RefPrd>
+												<Unit>$values.get('Floating rate reference period of leg 2 - time period')</Unit>
+												<Val>$values.get('Floating rate reference period of leg 2 - multiplier')</Val>
+											</RefPrd>
+											<Sprd>
+												<BsisPtSprd>$values.get('Spread of leg 2')</BsisPtSprd>
+											</Sprd>
+											<DayCnt>
+												<Cd>$values.get('Floating rate day count convention of leg 2')</Cd>
+											</DayCnt>
+											<PmtFrqcy>
+												<Term>
+													<Unit>$values.get('Floating rate payment frequency period of leg 2')</Unit>
+													<Val>$values.get('Floating rate payment frequency period multiplier of leg 2')</Val>
+												</Term>
+											</PmtFrqcy>
+											<RstFrqcy>
+												<Term>
+													<Unit>$values.get('Floating rate reset frequency period of leg 2')</Unit>
+													<Val>$values.get('Floating rate reset frequency multiplier of leg 2')</Val>
+												</Term>
+											</RstFrqcy>
+										</Fltg>
+								#else
+									<Fxd>
+											<Rate>
+												<Rate>$values.get('Fixed rate of leg 2')</Rate>
+											</Rate>
+											<DayCnt>
+												<Cd>$values.get('Fixed rate day count convention leg 2')</Cd>
+											</DayCnt>
+											<PmtFrqcy>
+												<Term>
+													<Unit>$values.get('Fixed rate payment frequency period leg 2')</Unit>
+													<Val>$values.get('Fixed rate payment frequency period multiplier leg 2')</Val>
+												</Term>
+											</PmtFrqcy>
+										</Fxd>
+								#end
+								</ScndLeg>
+						#end
+							</IntrstRate>
+						#end
+						#if($values.get('Asset class') == 'CURR')
+							<Ccy>
+								#if(!$StringUtils.isEmpty($values.get('Forward Exchange Rate')))
+								<FwdXchgRate>$values.get('Forward exchange rate')</FwdXchgRate>
+								#end
+								<XchgRate>$values.get('Exchange rate 1')</XchgRate>
+									<XchgRateBsis>
+										<CcyPair>
+											<BaseCcy>$values.get('Primary Currency')</BaseCcy>
+											<QtdCcy>$values.get('Quoting Currency')</QtdCcy>
+										</CcyPair>
+									</XchgRateBsis>
+								</Ccy>
+						#end
+						#if($values.get('Contract type') == 'OPTN')
+							<Optn>
+									<ExrcStyle>$values.get('Option style')</ExrcStyle>
+							#if(!$StringUtils.isEmpty($values.get('Maturity date of the underlying')))
+								<MtrtyDtOfUndrlyg>$values.get('Maturity date of the underlying')</MtrtyDtOfUndrlyg>
+							#end
+							#if(!$StringUtils.isEmpty($values.get('Option premium amount')))
+								<PrmAmt Ccy="$values.get('Option premium currency')">$values.get('Option premium amount')</PrmAmt>
+									<PrmPmtDt>$values.get('Option premium payment date')</PrmPmtDt>
+							#end
+								<StrkPric>
+										<MntryVal>
+											<Amt Ccy="$values.get('Strike price currency/currency pair')">$values.get('Strike price')</Amt>
+										</MntryVal>
+									</StrkPric>
+									<StrkPricSchdl>
+										<Pric>
+											<MntryVal>
+												<Amt Ccy="$values.get('Strike price currency/currency pair')"/>
+											</MntryVal>
+										</Pric>
+								#if(!$StringUtils.isEmpty($values.get('End date of the strike price')))
+									<UadjstdEndDt>$values.get('End date of the strike price')</UadjstdEndDt>
+								#end
+								#if(!$StringUtils.isEmpty($values.get('Effective date of the strike price')))
+									<UadjstdFctvDt>$values.get('Effective date of the strike price')</UadjstdFctvDt>
+								#end
+								</StrkPricSchdl>
+									<Tp>$values.get('Option type')</Tp>
+								</Optn>
+						#end
+						#if($values.get('Asset class') == 'CRDT')
+							<Cdt>
+							#if(!$StringUtils.isEmpty($values.get('Seniority')))
+								<Snrty>$values.get('Seniority')</Snrty>
+							#end
+							#if(!$StringUtils.isEmpty($values.get('Reference entity')) || !$StringUtils.isEmpty($values.get('Reference entity country')))
+								<RefPty>
+								#if(!$StringUtils.isEmpty($values.get('Reference entity')))
+									<LEI>$values.get('Reference entity')</LEI>
+								#elseif(!$StringUtils.isEmpty($values.get('Reference entity country')))
+									<Ctry>$values.get('Reference entity country')</Ctry>
+								#end
+								</RefPty>
+							#end
+							#if(!$StringUtils.isEmpty($values.get('Series')))
+								<Srs>$values.get('Series')</Srs>
+							#end
+							#if(!$StringUtils.isEmpty($values.get('Index factor')))
+								<IndxFctr>$values.get('Index factor')</IndxFctr>
+							#end
+								<Trch>
+										<Utrnchd>NORE</Utrnchd>
+									</Trch>
+							#if(!$StringUtils.isEmpty($values.get('Version')))
+								<Vrsn>$values.get('Version')</Vrsn>
+							#end
+							</Cdt>
+						#end
+						#if(!$StringUtils.isEmpty($values.get('Other payment type')))
+							<OthrPmt>
+									<PmtAmt>
+										<Amt Ccy="$values.get('Other payment currency')">$values.get('Other payment amount')</Amt>
+									</PmtAmt>
+									<PmtTp>
+										<Tp>$values.get('Other payment type')</Tp>
+									</PmtTp>
+									<PmtDt>$values.get('Other payment date')</PmtDt>
+									<PmtPyer>
+										<Lgl>
+											<LEI>$values.get('Other payment payer')</LEI>
+										</Lgl>
+									</PmtPyer>
+									<PmtRcvr>
+										<Lgl>
+											<LEI>$values.get('Other payment receiver')</LEI>
+										</Lgl>
+									</PmtRcvr>
+								</OthrPmt>
+						#end
+						#if(!$StringUtils.isEmpty($values.get('Package identifier')))
+							<Packg>
+									<CmplxTradId>$values.get('Package identifier')</CmplxTradId>
+									<Pric>
+										<MntryVal>
+											<Amt Ccy="$values.get('Package transaction price currency')">$values.get('Package transaction price')</Amt>
+										</MntryVal>
+									</Pric>
+							#if(!$StringUtils.isEmpty($values.get('Package transaction spread')))
+								<Sprd>
+										<MntryVal>
+											<Amt Ccy="$values.get('Package transaction spread currency')">$values.get('Package transaction spread')</Amt>
+										</MntryVal>
+									</Sprd>
+							#end
+							</Packg>
+						#end
+						</TxData>
+						</CmonTradData>
+						<Lvl>$values.get('Level')</Lvl>
+				#if($values.get('Action type') == 'NEWT')
+					</New>
+				#elseif($values.get('Action type') == 'MODI')
+				</Mod>
+				#end
+			#end	
+			</Rpt>
+			#end
+		</TradData>
+	</DerivsTradRpt>
+</Document>

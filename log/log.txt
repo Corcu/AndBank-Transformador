@@ -1,0 +1,40 @@
+13/03/2024 16:03:25  INFO - Processing file C:\Development\emir-refit-csv2xml-launcher\input\sample.csv
+13/03/2024 16:03:25  INFO - XML validation success
+13/03/2024 16:03:25  WARN - File already exists. Will be overwritten.
+13/03/2024 16:03:25  INFO - File exported to C:\Development\emir-refit-csv2xml-launcher\output\sample.xml
+13/03/2024 16:03:25  INFO - Archived file C:\Development\emir-refit-csv2xml-launcher\input\archive\sample.csv_20240313160325
+13/03/2024 16:06:23 ERROR - Error while launching the application
+java.io.IOException: Only one file with extension .csv is allowed in the input directory
+	at com.andbank.emir.Csv2XmlApp.getInputFile(Csv2XmlApp.java:98)
+	at com.andbank.emir.Csv2XmlApp.launch(Csv2XmlApp.java:65)
+	at com.andbank.emir.Csv2XmlLauncher.main(Csv2XmlLauncher.java:25)
+2024-03-13 20:46:48 ERROR - Error while launching the application
+java.io.IOException: Only one file with extension .csv is allowed in the input directory
+	at com.andbank.emir.Csv2XmlApp.getInputFile(Csv2XmlApp.java:104)
+	at com.andbank.emir.Csv2XmlApp.launch(Csv2XmlApp.java:71)
+	at com.andbank.emir.Csv2XmlLauncher.main(Csv2XmlLauncher.java:31)
+2024-03-13 20:47:11  INFO - Processing file C:\Development\emir-refit-csv2xml-launcher\input\sample.csv
+2024-03-13 20:47:11  INFO - XML validation success
+2024-03-13 20:47:11  WARN - File already exists. Will be overwritten.
+2024-03-13 20:47:11  INFO - File exported to C:\Development\emir-refit-csv2xml-launcher\output\sample.xml
+2024-03-13 20:47:11  INFO - Archived file C:\Development\emir-refit-csv2xml-launcher\input\archive\sample.csv_20240313204711
+2024-03-13 20:47:21 ERROR - Error while launching the application
+java.io.IOException: Only one file with extension .csv is allowed in the input directory
+	at com.andbank.emir.Csv2XmlApp.getInputFile(Csv2XmlApp.java:104)
+	at com.andbank.emir.Csv2XmlApp.launch(Csv2XmlApp.java:71)
+	at com.andbank.emir.Csv2XmlLauncher.main(Csv2XmlLauncher.java:31)
+2024-03-13 20:49:00 ERROR - Error while launching the application
+java.io.IOException: Only one file with extension .csv is allowed in the input directory
+	at com.andbank.emir.Csv2XmlApp.getInputFile(Csv2XmlApp.java:104)
+	at com.andbank.emir.Csv2XmlApp.launch(Csv2XmlApp.java:71)
+	at com.andbank.emir.Csv2XmlLauncher.main(Csv2XmlLauncher.java:31)
+2024-03-13 20:49:14  INFO - Processing file C:\Development\emir-refit-csv2xml-launcher\input\sample.csv
+2024-03-13 20:49:14  INFO - XML validation success
+2024-03-13 20:49:14  WARN - File already exists. Will be overwritten.
+2024-03-13 20:49:14  INFO - File exported to C:\Development\emir-refit-csv2xml-launcher\output\sample.xml
+2024-03-13 20:49:14  INFO - Archived file C:\Development\emir-refit-csv2xml-launcher\input\archive\sample.csv_20240313204914
+2024-03-13 20:52:22 ERROR - Error while launching the application
+java.io.IOException: Only one file with extension .csv is allowed in the input directory
+	at com.andbank.emir.Csv2XmlApp.getInputFile(Csv2XmlApp.java:104)
+	at com.andbank.emir.Csv2XmlApp.launch(Csv2XmlApp.java:71)
+	at com.andbank.emir.Csv2XmlLauncher.main(Csv2XmlLauncher.java:31)
